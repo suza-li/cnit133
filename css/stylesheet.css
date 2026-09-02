@@ -1,0 +1,11 @@
+body {font-family:"Times New Roman", serif}
+nav {
+    font-size: large;
+    margin: 10px;
+    background-color: black;
+    padding: 10px;
+}
+nav a {
+    margin-left: 10px;
+    color: antiquewhite;
+}
