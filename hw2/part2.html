@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+                <meta name="description"
+            content="Homework 2 for CNIT 133, almost live!">
+        <title>CNIT 133 Homework 2</title>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <link rel="stylesheet" href="../css/part2Style.css">
+    </head>
+    <body>
+        <nav>
+            <a href="hw2.html">Back to HW2</a>
+        </nav>
+        <div class="container">
+            <h1>Integer Calculator</h1>
+    
+            <form id="calculatorForm">
+    
+                <label for="num1">Enter Integer 1:</label>
+                <input type="text" id="num1">
+                <br>
+                <label for="num2">Enter Integer 2:</label>
+                <input type="text" id="num2">
+                <br>
+                <label for="num3">Enter Integer 3:</label>
+                <input type="text" id="num3">
+                <br>
+                <button type="button" id="calculate">Calculate</button>
+                <button type="button" id="clear">Clear</button>
+                <hr>
+                <button type="button" id="fadeButton">Fade Results</button>
+    
+                <textarea id="results" readonly></textarea>
+    
+            </form>
+            <script>
+                // Calculate button
+                document.getElementById("calculate").addEventListener("click", function () {
+        
+                    // Remove any previous fade effect
+                    $("#results").stop(true, true).show();
+        
+                    // Get values from input boxes
+                    let value1 = document.getElementById("num1").value.trim();
+                    let value2 = document.getElementById("num2").value.trim();
+                    let value3 = document.getElementById("num3").value.trim();
+        
+                    // Check that all three inputs contain integers
+                    let integerPattern = /^-?\d+$/;
+        
+                    if (!integerPattern.test(value1) ||
+                        !integerPattern.test(value2) ||
+                        !integerPattern.test(value3)) {
+        
+                        document.getElementById("results").value =
+                            "Error: Please enter valid integers in all three input boxes.";
+        
+                        return;
+                    }
+        
+                    // Convert strings to numbers
+                    let num1 = Number(value1);
+                    let num2 = Number(value2);
+                    let num3 = Number(value3);
+        
+                    // Calculate results
+                    let sum = num1 + num2 + num3;
+                    let average = sum / 3;
+                    let product = num1 * num2 * num3;
+        
+                    let smallest = Math.min(num1, num2, num3);
+                    let largest = Math.max(num1, num2, num3);
+        
+                    // Display results
+                    document.getElementById("results").value =
+                        "Results:\n\n" +
+                        "Sum: " + sum + "\n" +
+                        "Average: " + average + "\n" +
+                        "Product: " + product + "\n" +
+                        "Smallest: " + smallest + "\n" +
+                        "Largest: " + largest;
+                });
+        
+        
+                // Clear button
+                document.getElementById("clear").addEventListener("click", function () {
+                    document.getElementById("num1").value = "";
+                    document.getElementById("num2").value = "";
+                    document.getElementById("num3").value = "";
+                    document.getElementById("results").value = "";
+        
+                    // Make sure the results are visible again
+                    $("#results").stop(true, true).show();
+                });
+        
+        
+                // jQuery Fade Results button
+                $("#fadeButton").click(function () {
+                    $("#results").fadeOut(1000);
+                });
+            </script>
+    </body>
+</html>
